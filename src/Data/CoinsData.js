@@ -1,9 +1,13 @@
 const CoinsData = ({ apiArray }) => {
-  console.log(apiArray);
 
-  apiArray.sort((a, b) => b.current_price - a.current_price);
-  console.log(apiArray)
+  const descendingPrice = () => {
+    apiArray.sort((a, b) => b.current_price - a.current_price);
+  }
 
+  const ascendingPrice = () => {
+    apiArray.sort((a, b) => a.current_price - b.current_price);
+  }
+  
   return null;
 };
 
