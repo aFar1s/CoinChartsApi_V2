@@ -7,14 +7,14 @@ import Coin from "./Components/Coin";
 import Form from "./Components/Form";
 import Home from "./Pages/Home";
 import AboutUs from "./Pages/AboutUs";
-import ContactUs from "./Pages/ContactUs"
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import ContactUs from "./Pages/ContactUs";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 
 function App() {
-  const [ coins, setCoins ] = useState([]);
-  const [ search, setSearch ] = useState("");
-  const [ applyCurrency, setapplyCurrency ] = useState('usd')
+  const [coins, setCoins] = useState([]);
+  const [search, setSearch] = useState("");
+  const [applyCurrency, setapplyCurrency] = useState("usd");
 
   useEffect(() => {
     axios
@@ -26,13 +26,6 @@ function App() {
       });
   }, [applyCurrency]);
 
-  /*
- const changeCurrencyField = (e) => {
-
- }
-
-  */
-
   const changeTextField = (e) => {
     setSearch(e.target.value);
   };
@@ -40,16 +33,19 @@ function App() {
   const filteredSearchString = coins.filter((coin) =>
     coin.name.toLowerCase().includes(search.toLowerCase())
   );
-console.log(coins)
+  console.log(coins);
   return (
-    
-    <Router> 
+    <Router>
       <div className="App">
         <Navbar />
         <div className="content-container">
           <Switch>
             <Route exact path="/">
-              <Home changeApiCurrency={applyCurrency => setapplyCurrency(applyCurrency)}/>
+              <Home
+                changeApiCurrency={(applyCurrency) =>
+                  setapplyCurrency(applyCurrency)
+                }
+              />
             </Route>
             <Route exact path="/data">
               <div className="coin-component-container">
@@ -65,6 +61,7 @@ console.log(coins)
                       price={coin.current_price}
                       priceChange={coin.price_change_percentage_24h}
                       market_cap={coin.market_cap}
+                      currencyText={applyCurrency}
                     />
                   );
                 })}
@@ -72,12 +69,12 @@ console.log(coins)
             </Route>
             <Route exact path="/about-us">
               <div className="about-us-container">
-               <AboutUs />
+                <AboutUs />
               </div>
             </Route>
             <Route exact path="/contact-us">
               <div className="contact-us-container">
-               <ContactUs />
+                <ContactUs />
               </div>
             </Route>
           </Switch>
