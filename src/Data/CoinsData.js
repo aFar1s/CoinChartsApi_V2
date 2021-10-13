@@ -1,14 +1,16 @@
-const CoinsData = ({ apiArray }) => {
+// const CoinsData = ({ apiArray }) => {
+//     console.log(apiArray)
+//   const descendingPrice = () => {
+//     return apiArray.sort((a, b) => b.current_price - a.current_price);
+// }
+// console.log(descendingPrice())
 
-  const descendingPrice = () => {
-    apiArray.sort((a, b) => b.current_price - a.current_price);
-  }
+//   const ascendingPrice = () => {
+//     return apiArray.sort((a, b) => a.current_price - b.current_price);
+//   }
+//   console.log(ascendingPrice())
 
-  const ascendingPrice = () => {
-    apiArray.sort((a, b) => a.current_price - b.current_price);
-  }
-  
-  return null;
-};
+//   return null;
+// };
 
-export default CoinsData;
+// export default CoinsData;

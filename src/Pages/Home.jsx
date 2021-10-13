@@ -22,13 +22,8 @@ const useStyles = makeStyles({
 const Home = ({ changeApiCurrency }) => {
 
     const classes = useStyles()
-    // const [currency, setCurrency] = React.useState('');
-    const [category, setCategory] = useState('usd')
-    
-    // const handleChange = (event) => {
-    //   setCurrency(event.target.value);
-    // };
-  
+    const [value, setValue] = useState('usd')
+     
     return (
         <div>
           <div className="text-container">
@@ -47,14 +42,14 @@ const Home = ({ changeApiCurrency }) => {
           <div className="data-input">
           <FormControl className={classes.field}>
           <FormLabel>Select Currency</FormLabel>
-          <RadioGroup value={category} onChange={(e) => setCategory(e.target.value)}>
+          <RadioGroup value={value} onChange={(e) => setValue(e.target.value)}>
             <FormControlLabel value="usd" control={<Radio />} label="US Dollar" />
             <FormControlLabel value="sgd" control={<Radio />} label="Singapore Dollar" />
             <FormControlLabel value="gbp" control={<Radio />} label="British Pound" />
             <FormControlLabel value="jpy" control={<Radio />} label="Japanese Yen" />
           </RadioGroup>
           <Link to="/data">
-           <button onClick={() => changeApiCurrency(category)}>Let's Go!</button>
+           <button onClick={() => changeApiCurrency(value)}>Let's Go!</button>
           </Link>
         </FormControl>
           </div>
