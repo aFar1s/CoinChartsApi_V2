@@ -1,11 +1,10 @@
 button {
     margin-bottom: 20px;
-    background-color: aquamarine;
-    color: rgb(130, 125, 125);
-    font-size: xx-large;
-    font-weight: bold;
-    text-decoration: underline;
+    background-color: #4285F4;
+    color: rgb(201, 198, 198);
+    font-size: x-large;
     border-radius: 5px;
+    padding: 5px;
 
 }
 

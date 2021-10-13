@@ -1,17 +1,33 @@
-import React from 'react'
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+// import Box from '@mui/material/Box';
+// import InputLabel from '@mui/material/InputLabel';
+// import MenuItem from '@mui/material/MenuItem';
+import { makeStyles } from '@mui/styles'
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+// import Select from '@mui/material/Select';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormLabel from '@mui/material/FormLabel';
 
-const Home = () => {
+const useStyles = makeStyles({
+  field: {
+    marginTop: 20,
+    marginBottom: 20,
+    display: 'block'
+  }
+})
 
-    const [currency, setCurrency] = React.useState('');
+const Home = ({ changeApiCurrency }) => {
 
-    const handleChange = (event) => {
-      setCurrency(event.target.value);
-    };
+    const classes = useStyles()
+    // const [currency, setCurrency] = React.useState('');
+    const [category, setCategory] = useState('usd')
+    
+    // const handleChange = (event) => {
+    //   setCurrency(event.target.value);
+    // };
   
     return (
         <div>
@@ -29,25 +45,22 @@ const Home = () => {
                  Nulla luctus quam ac vestibulum bibendum.</p>
           </div>
           <div className="data-input">
-            <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Select Currency</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={currency}
-                        label="Select Currency"
-                        onChange={handleChange}
-                        >
-                        <MenuItem value={'usd'}>USD</MenuItem>
-                        <MenuItem value={'sgd'}>SGD</MenuItem>
-                    </Select>
-                </FormControl>
-            </Box>
-
+          <FormControl className={classes.field}>
+          <FormLabel>Select Currency</FormLabel>
+          <RadioGroup value={category} onChange={(e) => setCategory(e.target.value)}>
+            <FormControlLabel value="usd" control={<Radio />} label="US Dollar" />
+            <FormControlLabel value="sgd" control={<Radio />} label="Singapore Dollar" />
+            <FormControlLabel value="gbp" control={<Radio />} label="British Pound" />
+            <FormControlLabel value="jpy" control={<Radio />} label="Japanese Yen" />
+          </RadioGroup>
+          <Link to="/data">
+           <button onClick={() => changeApiCurrency(category)}>Let's Go!</button>
+          </Link>
+        </FormControl>
           </div>
         </div>
     )
-}
-
-export default Home
+  }
+  
+  export default Home
+  

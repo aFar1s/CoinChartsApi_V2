@@ -12,18 +12,26 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Navbar from "./Components/Navbar";
 
 function App() {
-  const [coins, setCoins] = useState([]);
-  const [search, setSearch] = useState("");
+  const [ coins, setCoins ] = useState([]);
+  const [ search, setSearch ] = useState("");
+  const [ applyCurrency, setapplyCurrency ] = useState('usd')
 
   useEffect(() => {
     axios
       .get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=sgd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=7d%2C30d%2C200d%2C1y`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${applyCurrency}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=7d%2C30d%2C200d%2C1y`
       )
       .then((res) => {
         setCoins(res.data);
       });
-  }, []);
+  }, [applyCurrency]);
+
+  /*
+ const changeCurrencyField = (e) => {
+
+ }
+
+  */
 
   const changeTextField = (e) => {
     setSearch(e.target.value);
@@ -41,7 +49,7 @@ console.log(coins)
         <div className="content-container">
           <Switch>
             <Route exact path="/">
-              <Home />
+              <Home changeApiCurrency={applyCurrency => setapplyCurrency(applyCurrency)}/>
             </Route>
             <Route exact path="/data">
               <div className="coin-component-container">
