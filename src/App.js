@@ -8,6 +8,7 @@ import Form from "./Components/Form";
 import Home from "./Pages/Home";
 import AboutUs from "./Pages/AboutUs";
 import ContactUs from "./Pages/ContactUs";
+import CoinsData from "./Data/CoinsData"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 
@@ -35,7 +36,12 @@ function App() {
   );
   console.log(coins);
   return (
+
+    
     <Router>
+      <CoinsData
+      apiArray={coins} 
+      />
       <div className="App">
         <Navbar />
         <div className="content-container">
