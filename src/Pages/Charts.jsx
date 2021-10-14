@@ -11,24 +11,24 @@ import axios from "axios";
 
 const Charts = ({ pushChartCoin }) => {
 
-    const [chartData, setChartData] = useState(null);
+    const [chartData, setChartData] = useState([]);
 
     useEffect(() => {
         axios
           .get(
-            `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=usd&from=1618342746&to=1634182746`
+            `https://api.coingecko.com/api/v3/coins/${pushChartCoin}/market_chart/range?vs_currency=usd&from=1618342746&to=1634182746`
           )
           .then((res) => {
             setChartData(res.data);
           });
-      }, []);
+      }, [ pushChartCoin ]);
 
       console.log(chartData)
 
     return ( 
         <div>
             <p>
-                {pushChartCoin}
+                {chartData.prices[0]}
             </p>
         </div>
     )
