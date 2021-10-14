@@ -9,6 +9,7 @@ import FilterButtons from "./Components/FilterButtons";
 import Home from "./Pages/Home";
 import AboutUs from "./Pages/AboutUs";
 import ContactUs from "./Pages/ContactUs";
+import Charts from "./Pages/Charts";
 // import CoinsData from "./Data/CoinsData"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./Components/Navbar";
@@ -18,6 +19,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [applyCurrency, setapplyCurrency] = useState("usd");
   const [applyOrder, setApplyOrder] = useState("market_cap_desc");
+  const [chartCoin, setChartCoin] = useState(null);
 
   useEffect(() => {
     axios
@@ -36,7 +38,7 @@ function App() {
   const filteredSearchString = coins.filter((coin) =>
     coin.name.toLowerCase().includes(search.toLowerCase())
   );
-  console.log(coins);
+
   return (
     <Router>
       {/* <CoinsData
@@ -63,6 +65,7 @@ function App() {
                   return (
                     <Coin
                       key={coin.id}
+                      coinId={coin.id}
                       name={coin.name}
                       image={coin.image}
                       symbol={coin.symbol}
@@ -71,6 +74,7 @@ function App() {
                       priceChange={coin.price_change_percentage_24h}
                       market_cap={coin.market_cap}
                       currencyText={applyCurrency}
+                      getChartCoin={setChartCoin}
                     />
                   );
                 })}
@@ -84,6 +88,11 @@ function App() {
             <Route exact path="/contact-us">
               <div className="contact-us-container">
                 <ContactUs />
+              </div>
+            </Route>
+            <Route exact path="/charts">
+              <div className="charts-container">
+                <Charts pushChartCoin={chartCoin} />
               </div>
             </Route>
           </Switch>
