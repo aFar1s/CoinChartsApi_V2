@@ -34,11 +34,16 @@ const Charts = ({ pushChartCoin }) => {
         //     priceAxisY.push(chartData.prices[i][1])
         // }
         // console.log(priceAxisY)
+
+        // priceAxisY = priceAxisY.toFixed(2)
         
         return ( 
             <div>
                 <div className="chart">
-                    <LineChart pushChartCoin={pushChartCoin}/>
+                    <LineChart 
+                    pushChartCoin={pushChartCoin}
+                    // priceAxisY={priceAxisY}
+                    />
                 </div>
            <p>{pushChartCoin}</p>
            <p>{chartData.prices}</p>
