@@ -4,7 +4,7 @@ import React from 'react'
 const FilterButtons = ({ changePriceOrder }) => {
 
     return (
-        <div>
+        <div className="filterbutton-container">
             
            <button className="filter-button" onClick={() => 
             changePriceOrder('price_asc')}>Sort Price Ascending</button>
