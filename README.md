@@ -19,3 +19,6 @@ Libraries used:
 - react-chartjs-2
 - axios
 
+API:
+- https://www.coingecko.com/en/api/documentation?
+
