@@ -49,7 +49,7 @@ const Home = ({ changeApiCurrency }) => {
             <FormControlLabel value="jpy" control={<Radio />} label="Japanese Yen" />
           </RadioGroup>
           <Link to="/data">
-           <button onClick={() => changeApiCurrency(value)}>Let's Go!</button>
+           <button className="home-button" onClick={() => changeApiCurrency(value)}>Let's Go!</button>
           </Link>
         </FormControl>
           </div>
