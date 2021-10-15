@@ -30,14 +30,12 @@ const Home = ({ changeApiCurrency }) => {
             <h2>
                 Welcome to CoinCharts
             </h2>
-            <p>  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                 Vivamus luctus erat et ante aliquam, sed condimentum ex dapibus.
-                 Nullam dolor enim, iaculis non ligula nec, sodales interdum arcu.
-                 Vivamus vel purus interdum, malesuada augue tincidunt, scelerisque ligula.
-                 Quisque feugiat commodo scelerisque. Nulla ac enim elit. 
-                 Suspendisse lacus lorem, tempor et dictum et, rhoncus eu leo. 
-                 Nunc lacinia magna vitae tortor congue feugiat. 
-                 Nulla luctus quam ac vestibulum bibendum.</p>
+            <p>  CoinCharts brings transparency to the cryptoeconomy.
+             We want to help investors, regulators, 
+             and the public make sense of this revolutionary new asset class, 
+             and are building data tools that will drive informed decision making and investment. 
+             We believe that crypto will democratize access to information, break down data silos, 
+             and ultimately give everyone the tools to build wealth.</p>
           </div>
           <div className="data-input">
           <FormControl className={classes.field}>
