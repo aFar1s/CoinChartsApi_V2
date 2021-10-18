@@ -1,7 +1,4 @@
 import React from 'react'
-import { useState } from "react";
-import { useEffect } from "react";
-import axios from "axios";
 import LineChart from "../Components/LineChart"
 
 
@@ -12,28 +9,50 @@ import LineChart from "../Components/LineChart"
 */
 
 
-const Charts = ({ pushChartCoin }) => {
-    
-    const [chartData, setChartData] = useState([]);
-    
-    useEffect(() => {
-        axios
-        .get(
-            `https://api.coingecko.com/api/v3/coins/${pushChartCoin}/market_chart/range?vs_currency=usd&from=1618342746&to=1634182746`
-            )
-            .then((res) => {
-                setChartData(res.data);
-            });
-        }, [ pushChartCoin ]);
+const Charts = ({ chartData, chartCoin }) => {
         
-        // console.log(chartData.prices[0][1])
+    const priceAxisY = () => {
+         let priceArray = [];
+         
+         for (let i=0; i < 184; i++) {
+             priceArray.push(chartData.prices[i][1].toFixed(2))
+         }
+ 
+         return priceArray
+     }
+
+     console.log(priceAxisY())
+
+     const timeAxisXRaw = () => {
+        let timeArray = [];
         
-        
-        // let priceAxisY = [];
-        // for (let i=0; i < 184; i++) {
-        //     priceAxisY.push(chartData.prices[i][1])
-        // }
-        // console.log(priceAxisY)
+        for (let i=0; i < 184; i++) {
+            timeArray.push(chartData.prices[i][0])
+        }
+
+        return timeArray
+    }
+
+
+     let timeAxisLocal = []
+
+     const timeAxisX = () => {
+
+        for (let i = 0; i < timeAxisXRaw().length; i++) {
+          const dateObject = new Date(timeAxisXRaw()[i]);
+          let dateStr = dateObject.toLocaleString("en-US", { month: "short" })
+          let dayNum = dateObject.toLocaleString("en-US", { day: "numeric" })
+          let dateArray = []
+          dateArray.push(dayNum, dateStr);
+          dateArray = dateArray.join("/");
+          timeAxisLocal.push(dateArray)
+        }
+      
+        return timeAxisLocal
+      
+      }
+
+      console.log(timeAxisX())
 
         // priceAxisY = priceAxisY.toFixed(2)
         
@@ -41,14 +60,16 @@ const Charts = ({ pushChartCoin }) => {
             <div>
                 <div className="chart">
                     <LineChart 
-                    pushChartCoin={pushChartCoin}
+                    pushChartCoin={chartCoin}
+                    timeAxisX={timeAxisX()}
+                    priceAxisY={priceAxisY()}
                     // priceAxisY={priceAxisY}
                     />
                 </div>
-           <p>{pushChartCoin}</p>
+           <p>{chartCoin}</p>
            <p>{chartData.prices}</p>
           </div>
-    )
+        )
 }
 
 export default Charts

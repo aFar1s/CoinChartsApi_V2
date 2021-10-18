@@ -19,7 +19,8 @@ function App() {
   const [search, setSearch] = useState("");
   const [applyCurrency, setapplyCurrency] = useState("usd");
   const [applyOrder, setApplyOrder] = useState("market_cap_desc");
-  const [chartCoin, setChartCoin] = useState(null);
+  const [chartCoin, setChartCoin] = useState("bitcoin");
+  const [chartData, setChartData] = useState([])
 
   useEffect(() => {
     axios
@@ -30,6 +31,16 @@ function App() {
         setCoins(res.data);
       });
   }, [applyCurrency, applyOrder]);
+
+  useEffect(() => {
+    axios
+    .get(
+        `https://api.coingecko.com/api/v3/coins/${chartCoin}/market_chart/range?vs_currency=usd&from=1618342746&to=1634182746`
+        )
+        .then((res) => {
+            setChartData(res.data);
+        });
+    }, [ chartCoin ]);
 
   const changeTextField = (e) => {
     setSearch(e.target.value);
@@ -92,7 +103,10 @@ function App() {
             </Route>
             <Route exact path="/charts">
               <div className="charts-container">
-                <Charts pushChartCoin={chartCoin} />
+                <Charts 
+                  chartData={chartData}
+                  chartCoin ={chartCoin}
+                />
               </div>
             </Route>
           </Switch>

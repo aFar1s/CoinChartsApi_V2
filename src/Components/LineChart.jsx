@@ -2,15 +2,15 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 
 
-const LineChart = ({ pushChartCoin, priceAxisY }) => {
+const LineChart = ({ pushChartCoin, priceAxisY, timeAxisX }) => {
     
    
     const data = {
-        labels: ['1', '2', '3', '4', '5', '6', '7'],
+        labels: timeAxisX,
         datasets: [
             {
                 label: `Price of ${pushChartCoin} past 6 months`,
-                data: [12, 19, 3, 5, 2, 32, 5],
+                data: priceAxisY,
                 fill: false,
                 backgroundColor: 'rgb(24, 118, 209)',
                 borderColor: 'rgba(24, 118, 209, 0.2)',
